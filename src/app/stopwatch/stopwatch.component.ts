@@ -16,8 +16,8 @@ export class StopwatchComponent {
   value$: Observable<any> = this.stopWatch.getTime();
   time = new Date();
 
-  wait():void{
-    
+  wait(): void {
+    this.stopWatch.pauseCounter();
   }
 
   reset(): void {

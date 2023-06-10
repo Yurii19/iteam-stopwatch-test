@@ -11,7 +11,7 @@ export class StopwatchService {
 
   stopwatchStream$ = new Subject<any>();
 
-  intervalStream$: Observable<any> = of(null);
+  interval$: Observable<any> = of(null);
 
   sub: any;
 
@@ -21,8 +21,17 @@ export class StopwatchService {
     return this.stopwatchStream$;
   }
 
-  resetCouter(){
-    this.stopwatchStream$.next(0)
+  pauseCounter() {
+    if (this.inProgress) {
+      this.sub.unsubscribe();
+    } else {
+      this.startScript();
+    }
+    this.inProgress = !this.inProgress;
+  }
+
+  resetCouter() {
+    this.stopwatchStream$.next(0);
   }
 
   startCount() {
@@ -35,11 +44,10 @@ export class StopwatchService {
   }
 
   private startScript() {
-    this.intervalStream$ = interval(1000);
-    this.sub = this.intervalStream$.subscribe((d) => {
-      this.counter = this.counter + 1;
+    this.interval$ = interval(1000);
+    this.sub = this.interval$.subscribe((d) => {
+      this.counter++;
       this.stopwatchStream$.next(this.counter);
-      // console.log(d);
       console.log(this.counter);
     });
   }
@@ -47,7 +55,7 @@ export class StopwatchService {
   private stopScript() {
     console.log('stop');
     this.counter = 0;
-    this.intervalStream$ = of(null);
+    this.interval$ = of(null);
     this.sub.unsubscribe();
   }
 }
