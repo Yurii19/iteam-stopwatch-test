@@ -6,10 +6,12 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './stopwatch.component.html',
-  styleUrls: ['./stopwatch.component.css']
+  styleUrls: ['./stopwatch.component.css'],
 })
 export class StopwatchComponent {
+  time = new Date();
 
-  time = new Date; 
-
+  start(): void {
+    this.time = new Date();
+  }
 }

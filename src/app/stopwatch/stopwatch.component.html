@@ -1,8 +1,8 @@
 <p>stopwatch works!</p>
 <div>
-    <span class="display">{{time}}</span>
+    <span class="display">{{time | date: 'hh:mm:ss'}}</span>
     <div class="controls">
-        <button class="control">Start/Stop</button>
+        <button class="control" (click)="start()">Start/Stop</button>
         <button class="control">Wait</button>
         <button class="control">Reset</button>
     </div>
