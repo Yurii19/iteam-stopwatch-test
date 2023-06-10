@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { from, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-stopwatch',
@@ -9,6 +10,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./stopwatch.component.css'],
 })
 export class StopwatchComponent {
+
+  value$: Observable<Date> = of(new Date);
   time = new Date();
 
   start(): void {
