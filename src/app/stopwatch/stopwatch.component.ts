@@ -2,11 +2,12 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { buffer, debounceTime, filter, fromEvent, Observable, of } from 'rxjs';
 import { StopwatchService } from './stopwatch.service';
+import {StopWatchFormatPipe} from './stop-watch-format.pipe';
 
 @Component({
   selector: 'app-stopwatch',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, StopWatchFormatPipe],
   templateUrl: './stopwatch.component.html',
   styleUrls: ['./stopwatch.component.css'],
 })
