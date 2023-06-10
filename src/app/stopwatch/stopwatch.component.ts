@@ -1,6 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { from, Observable, of } from 'rxjs';
+import {
+  debounce,
+  debounceTime,
+  from,
+  fromEvent,
+  map,
+  Observable,
+  of,
+  Subject,
+  throttleTime,
+} from 'rxjs';
 import { StopwatchService } from './stopwatch.service';
 
 @Component({
@@ -11,13 +21,20 @@ import { StopwatchService } from './stopwatch.service';
   styleUrls: ['./stopwatch.component.css'],
 })
 export class StopwatchComponent {
-  constructor(private stopWatch: StopwatchService) {}
-
   value$: Observable<any> = this.stopWatch.getTime();
-  // time = new Date();
+  //clicks$ = new Subject<any>();
+  clicks$ = fromEvent(document, 'click');
+
+  isClicked: boolean = false;
+
+  constructor(private stopWatch: StopwatchService) {
+    this.clicks$
+     // .pipe(debounceTime(300))
+      .subscribe((d) => console.log(d));
+  }
 
   wait(): void {
-    this.stopWatch.pauseCounter();
+   //this.clicks$.next('clicked')
   }
 
   reset(): void {
@@ -28,4 +45,11 @@ export class StopwatchComponent {
     // this.time = new Date();
     this.stopWatch.startCount();
   }
+
+  // clickedHandle() {
+  //   this.isClicked = true;
+  //   setTimeout(() => {
+  //     this.isClicked = false;
+  //   }, 300);
+  // }
 }

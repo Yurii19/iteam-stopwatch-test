@@ -7,11 +7,11 @@ import { BehaviorSubject, from, interval, Observable, of, Subject } from 'rxjs';
 export class StopwatchService {
   inProgress: boolean = false;
 
-  counter: number = 0;
+  counter: number = 10;
 
   stopwatchStream$ = new BehaviorSubject<any>(0);
 
-  interval$: Observable<any> = of(null);
+  interval$: Observable<number> = of(0);
 
   intervalSubsctiption: any;
 
@@ -19,7 +19,7 @@ export class StopwatchService {
     //this.stopwatchStream$.next(0);
   }
 
-  getTime() {
+  getTime(): Observable<number> {
     return this.stopwatchStream$;
   }
 
@@ -57,7 +57,7 @@ export class StopwatchService {
   private stopScript() {
     console.log('stop');
     this.counter = 0;
-    this.interval$ = of(null);
+    this.interval$ = of(0);
     this.intervalSubsctiption.unsubscribe();
   }
 }

@@ -1,13 +1,13 @@
 <p>stopwatch works!</p>
 <div>
-    <!-- <span class="display">{{time | date: 'hh:mm:ss'}}</span>
+  <!-- <span class="display">{{time | date: 'hh:mm:ss'}}</span>
     <br>
     <span class="display">{{value$ | async | date: 'hh:mm:ss'}}</span>
     <br> -->
-    <span class="display">{{value$ | async}}</span>
-    <div class="controls">
-        <button class="control" (click)="start()">Start/Stop</button>
-        <button class="control" (click)="wait()">Wait</button>
-        <button class="control" (click)="reset()">Reset</button>
-    </div>
+  <span class="display">{{ value$ | async }}</span>
+  <div class="controls">
+    <button class="control" (click)="start()">Start/Stop</button>
+    <template #waitButton> <button class="control" (click)="wait()">Wait</button></template>
+    <button class="control" (click)="reset()">Reset</button>
+  </div>
 </div>
