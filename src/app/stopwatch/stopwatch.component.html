@@ -3,9 +3,11 @@
     <span class="display">{{time | date: 'hh:mm:ss'}}</span>
     <br>
     <span class="display">{{value$ | async | date: 'hh:mm:ss'}}</span>
+    <br>
+    <span class="display">{{value$ | async}}</span>
     <div class="controls">
         <button class="control" (click)="start()">Start/Stop</button>
-        <button class="control">Wait</button>
-        <button class="control">Reset</button>
+        <button class="control" (click)="wait()">Wait</button>
+        <button class="control" (click)="reset()">Reset</button>
     </div>
 </div>
