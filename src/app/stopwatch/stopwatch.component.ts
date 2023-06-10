@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   debounce,
@@ -23,14 +23,18 @@ import { StopwatchService } from './stopwatch.service';
 export class StopwatchComponent {
   value$: Observable<any> = this.stopWatch.getTime();
   //clicks$ = new Subject<any>();
-  clicks$ = fromEvent(document, 'click');
+  @ViewChild('waitButton') waitButton!: ElementRef;
+  //clicks$ : Observable<any>;
 
   isClicked: boolean = false;
 
   constructor(private stopWatch: StopwatchService) {
-    this.clicks$
-     // .pipe(debounceTime(300))
-      .subscribe((d) => console.log(d));
+    
+  }
+
+  ngAfterViewInit(){
+    console.log('hello')
+   fromEvent(this.waitButton.nativeElement,'click').subscribe(d => console.log(d)) 
   }
 
   wait(): void {
