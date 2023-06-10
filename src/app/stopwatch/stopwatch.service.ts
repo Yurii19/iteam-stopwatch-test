@@ -31,6 +31,7 @@ export class StopwatchService {
   }
 
   resetCouter() {
+    this.counter = 0;
     this.stopwatchStream$.next(0);
   }
 
