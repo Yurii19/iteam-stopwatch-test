@@ -15,9 +15,7 @@ export class StopwatchService {
 
   intervalSubsctiption: any;
 
-  constructor() {
-    //this.stopwatchStream$.next(0);
-  }
+  constructor() {}
 
   getTime(): Observable<number> {
     return this.stopwatchStream$;
@@ -42,6 +40,7 @@ export class StopwatchService {
       this.startScript();
     } else {
       this.stopScript();
+      this.stopwatchStream$.next(0);
     }
   }
 
@@ -50,7 +49,6 @@ export class StopwatchService {
     this.intervalSubsctiption = this.interval$.subscribe((d) => {
       this.counter++;
       this.stopwatchStream$.next(this.counter);
-      console.log(this.counter);
     });
   }
 
