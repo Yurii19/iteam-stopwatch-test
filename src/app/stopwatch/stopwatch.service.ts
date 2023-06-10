@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { from, interval, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, from, interval, Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +9,15 @@ export class StopwatchService {
 
   counter: number = 0;
 
-  stopwatchStream$ = new Subject<any>();
+  stopwatchStream$ = new BehaviorSubject<any>(0);
 
   interval$: Observable<any> = of(null);
 
-  sub: any;
+  intervalSubsctiption: any;
 
-  constructor() {}
+  constructor() {
+    //this.stopwatchStream$.next(0);
+  }
 
   getTime() {
     return this.stopwatchStream$;
@@ -23,7 +25,7 @@ export class StopwatchService {
 
   pauseCounter() {
     if (this.inProgress) {
-      this.sub.unsubscribe();
+      this.intervalSubsctiption.unsubscribe();
     } else {
       this.startScript();
     }
@@ -45,7 +47,7 @@ export class StopwatchService {
 
   private startScript() {
     this.interval$ = interval(1000);
-    this.sub = this.interval$.subscribe((d) => {
+    this.intervalSubsctiption = this.interval$.subscribe((d) => {
       this.counter++;
       this.stopwatchStream$.next(this.counter);
       console.log(this.counter);
@@ -56,6 +58,6 @@ export class StopwatchService {
     console.log('stop');
     this.counter = 0;
     this.interval$ = of(null);
-    this.sub.unsubscribe();
+    this.intervalSubsctiption.unsubscribe();
   }
 }

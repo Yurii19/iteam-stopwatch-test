@@ -14,7 +14,7 @@ export class StopwatchComponent {
   constructor(private stopWatch: StopwatchService) {}
 
   value$: Observable<any> = this.stopWatch.getTime();
-  time = new Date();
+  // time = new Date();
 
   wait(): void {
     this.stopWatch.pauseCounter();
@@ -25,7 +25,7 @@ export class StopwatchComponent {
   }
 
   start(): void {
-    this.time = new Date();
+    // this.time = new Date();
     this.stopWatch.startCount();
   }
 }
