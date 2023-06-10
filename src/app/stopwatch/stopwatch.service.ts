@@ -7,7 +7,7 @@ import { BehaviorSubject, from, interval, Observable, of, Subject } from 'rxjs';
 export class StopwatchService {
   inProgress: boolean = false;
 
-  counter: number = 10;
+  counter: number = 0;
 
   stopwatchStream$ = new BehaviorSubject<any>(0);
 

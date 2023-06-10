@@ -1,8 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  buffer,
   debounce,
   debounceTime,
+  filter,
   from,
   fromEvent,
   map,
@@ -24,21 +26,31 @@ export class StopwatchComponent {
   value$: Observable<any> = this.stopWatch.getTime();
   //clicks$ = new Subject<any>();
   @ViewChild('waitButton') waitButton!: ElementRef;
-  //clicks$ : Observable<any>;
+  clicks$: Observable<any> = of(0);
 
-  isClicked: boolean = false;
+  // isClicked: boolean = false;
+  sensor: number = 0;
 
-  constructor(private stopWatch: StopwatchService) {
-    
-  }
+  constructor(private stopWatch: StopwatchService) {}
 
-  ngAfterViewInit(){
-    console.log('hello')
-   fromEvent(this.waitButton.nativeElement,'click').subscribe(d => console.log(d)) 
+  ngAfterViewInit() {
+    // console.log('hello')
+    this.clicks$ = fromEvent(this.waitButton.nativeElement, 'click');
+    this.clicks$
+      .pipe(
+        buffer(this.clicks$.pipe(debounceTime(300))),
+        filter((clickAccamulator) => clickAccamulator .length > 1)
+      )
+      .subscribe((d: any) => {
+        // this.sensor++;
+        // console.log(this.sensor);
+        console.log(d.length);
+        this.stopWatch.pauseCounter();
+      });
   }
 
   wait(): void {
-   //this.clicks$.next('clicked')
+    //this.clicks$.next('clicked')
   }
 
   reset(): void {
@@ -46,14 +58,6 @@ export class StopwatchComponent {
   }
 
   start(): void {
-    // this.time = new Date();
     this.stopWatch.startCount();
   }
-
-  // clickedHandle() {
-  //   this.isClicked = true;
-  //   setTimeout(() => {
-  //     this.isClicked = false;
-  //   }, 300);
-  // }
 }
