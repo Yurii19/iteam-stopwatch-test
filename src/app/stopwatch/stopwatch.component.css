@@ -1,35 +1,65 @@
+.container > span {
+  font-weight: 600;
+}
+
+.state {
+  display: inline-block;
+  padding-left: 2px;
+  font-size: 1.1em;
+}
 .display {
-    display: inline-block;
-    padding: 10px;
-    margin: 3px;
-    font-size: 1.2em;
-    /* font-family: Geneva, Verdana, sans-serif; */
-    background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+}
+.display-time {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px 3px 10px 3px;
+  font-size: 1.2em;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Button Styles */
 .control {
-    margin: 0 3px 0 3px;
-    width: 150px;
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    background-color: #4CAF50;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .control:hover {
-    background-color: #45a049;
-  }
-  
-  .control:active {
-    background-color: #3e8e41;
-  }
-  
-  
+  margin: 0 3px 0 3px;
+  width: 150px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.control:hover {
+  background-color: #45a049;
+}
+
+.control:active {
+  background-color: #3e8e41;
+}
+
+.inactive {
+  background-color: black;
+  transition: 0.5s;
+}
+.active {
+  background-color: red;
+  transition: 0.5s;
+}
+.paused {
+  background-color: rgb(255, 204, 0);
+  transition: 0.5s;
+}
+.indicator{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}

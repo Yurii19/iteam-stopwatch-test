@@ -15,7 +15,7 @@ export class StopWatchFormatPipe implements PipeTransform {
     return `${hrs}:${min}:${sec}`;
   }
 
-  toDouble(val: number): string {
+  private toDouble(val: number): string {
     return val > 9 ? `${val}` : `0${val}`;
   }
 }

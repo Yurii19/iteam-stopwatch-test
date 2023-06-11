@@ -1,7 +1,11 @@
-<div>
-  <span>{{ classState$ | async }}</span
-  ><br />
-  <span class="display">{{ value$ | async | stopWatchFormat }}</span>
+<div class="container" *ngIf="classState$ | async as state">
+  <!-- <span class="state" [ngClass]="state">{{ state }}</span> -->
+  <br />
+  <div class="display">
+    <span class="display-time">{{ value$ | async | stopWatchFormat }} </span>
+    <div class="indicator" [ngClass]="state"></div>
+  </div>
+
   <div class="controls">
     <button class="control" (click)="start()">Start/Stop</button>
     <button class="control" #waitButton>Wait</button>

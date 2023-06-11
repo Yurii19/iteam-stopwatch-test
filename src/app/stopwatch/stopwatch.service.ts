@@ -6,8 +6,6 @@ import { stopWatchState } from '../variables';
   providedIn: 'root',
 })
 export class StopwatchService {
-  // inProgress: boolean = false;
-  //paused: boolean = false;
   state$ = new BehaviorSubject<string>(stopWatchState.inactive);
   state: string = stopWatchState.inactive;
   counter: number = 0;
@@ -33,24 +31,19 @@ export class StopwatchService {
       this.startScript();
       this.setActive();
     }
-    // this.inProgress = !this.inProgress;
   }
 
   resetCouter() {
-    this.counter = 0;
-    this.stopwatchStream$.next(0);
-    if (
-      this.state === stopWatchState.active ||
-      this.state === stopWatchState.paused
-    ) {
+    if (this.state === stopWatchState.active) {
+      this.counter = 0;
+      this.stopwatchStream$.next(0);
       this.setActive();
+      this.stopScript();
       this.startScript();
     }
-    //this.stopwatchState$.next(stopWatchState.active);
   }
 
   startCount() {
-    //this.state = stopWatchState.active;
     if (this.state === stopWatchState.inactive) {
       this.startScript();
       this.setActive();
@@ -85,7 +78,6 @@ export class StopwatchService {
   }
 
   private stopScript() {
-    console.log('stop');
     this.counter = 0;
     this.interval$ = of(0);
     this.intervalSubsctiption.unsubscribe();
