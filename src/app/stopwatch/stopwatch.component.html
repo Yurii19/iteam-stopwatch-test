@@ -1,9 +1,6 @@
-<p>stopwatch works!</p>
 <div>
-  <!-- <span class="display">{{time | date: 'hh:mm:ss'}}</span>
-    <br>
-    <span class="display">{{value$ | async | date: 'hh:mm:ss'}}</span>
-    <br> -->
+  <span>{{ classState$ | async }}</span
+  ><br />
   <span class="display">{{ value$ | async | stopWatchFormat }}</span>
   <div class="controls">
     <button class="control" (click)="start()">Start/Stop</button>

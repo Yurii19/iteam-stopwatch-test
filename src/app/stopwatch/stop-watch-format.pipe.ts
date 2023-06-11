@@ -11,8 +11,7 @@ export class StopWatchFormatPipe implements PipeTransform {
       sec: string = '';
     sec = this.toDouble(value % 60);
     min = this.toDouble(Math.trunc(value / 60));
-    hrs = this.toDouble(Math.trunc(value / (60 * 60 )));
-    console.log(sec, ':', min, ':', hrs);
+    hrs = this.toDouble(Math.trunc(value / (60 * 60)));
     return `${hrs}:${min}:${sec}`;
   }
 

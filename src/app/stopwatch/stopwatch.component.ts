@@ -15,8 +15,11 @@ export class StopwatchComponent {
   value$: Observable<any> = this.stopWatch.getTime();
   @ViewChild('waitButton') waitButton!: ElementRef;
   clicks$: Observable<any> = of(0);
+  classState$: Observable<string>;
 
-  constructor(private stopWatch: StopwatchService) {}
+  constructor(private stopWatch: StopwatchService) {
+    this.classState$ = this.stopWatch.getState();
+  }
 
   ngAfterViewInit() {
     this.clicks$ = fromEvent(this.waitButton.nativeElement, 'click');
