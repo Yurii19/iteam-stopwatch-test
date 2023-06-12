@@ -1,6 +1,4 @@
 <div class="container" *ngIf="classState$ | async as state">
-  <!-- <span class="state" [ngClass]="state">{{ state }}</span> -->
-  <br />
   <div class="display">
     <span class="display-time">{{ value$ | async | stopWatchFormat }} </span>
     <div class="indicator" [ngClass]="state"></div>
