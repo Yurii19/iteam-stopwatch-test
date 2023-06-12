@@ -1,0 +1,6 @@
+export const environment = {
+    production: false,
+    // graphqlHost: 'http://localhost:3000/', // if you are running nestjs-example-app project
+    graphqlHost: 'https://nestjs-example-app.onrender.com/',
+    domain: 'http://localhost:4200',
+  };
